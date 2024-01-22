@@ -1,5 +1,6 @@
 package test.test.helpers;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.Cookie;
@@ -16,6 +17,7 @@ public class LoginExtension implements BeforeEachCallback {
     public static final String TOKEN = cookies.getToken();
     public static final String EXPIRES = cookies.getExpires();
     @Override
+    @Step("Устанавливаем авторизационные куки")
     public void beforeEach(ExtensionContext context) {
 
         open("/images/Toolsqa.jpg");

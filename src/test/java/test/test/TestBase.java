@@ -30,6 +30,11 @@ public class TestBase {
         Configuration.webdriverLogsEnabled = true;
         Configuration.browser = config.getBrowserName();
 
+
+        if (!config.getRemoteWebDriver().isEmpty()) {
+            Configuration.remote
+                    = config.getRemoteWebDriver();
+        }
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,

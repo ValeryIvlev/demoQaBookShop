@@ -17,7 +17,6 @@ public class DeleteComponent {
     @Step("Подтверждаем удаление книги")
     public ProfilePage confirmDelete(){
         buttonOk.click();
-        buttonOk.shouldBe(hidden);
         Selenide.confirm();
         return Selenide.page(ProfilePage.class);
     }

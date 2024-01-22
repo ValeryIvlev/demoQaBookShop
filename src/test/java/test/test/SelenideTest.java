@@ -20,8 +20,8 @@ public class SelenideTest extends TestBase{
 
         orderSteps.addBook(TOKEN, USER_ID);
 
-        open("https://demoqa.com/profile");
-        profilePage.deleteNumberBook(0)
+        profilePage.openProfile()
+                .deleteNumberBook(0)
                 .confirmDelete()
                 .countBooksOnBasket(0);
     }

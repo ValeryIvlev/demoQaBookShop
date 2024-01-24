@@ -12,7 +12,7 @@ public class Books {
     String author;
     String publish_date;
     String publisher;
-    int pages;
+    Integer pages;
     String description;
     String website;
 }

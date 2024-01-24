@@ -12,6 +12,7 @@ import test.test.models.books.GetBooksRequest;
 import java.util.ArrayList;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static test.test.specs.BaseSpecs.*;
 
@@ -41,14 +42,15 @@ public class OrderSteps {
     @Step("Добавляем книгу в корзину")
     public String addRandomBook(String token, String userId){
         TestData testData = new TestData();
-        CollectionOfIsbns collectionOfIsbns = CollectionOfIsbns.builder()
-                .isbn(testData.getRandomBook())
+        String randomBook = testData.getRandomBook();
+        CollectionOfIsbns isbns = CollectionOfIsbns.builder()
+                .isbn(randomBook)
                 .build();
-        AddBookResponse addBookResponse = AddBookResponse.builder()
+        AddBookRequest addBookResponse = AddBookRequest.builder()
                 .userId(userId)
-                .collectionOfIsbns(new CollectionOfIsbns[]{collectionOfIsbns})
+                .collectionOfIsbns(new CollectionOfIsbns[]{isbns})
                 .build();
-        AddBookRequest addOneBook = given()
+        AddBookResponse addRandomBook = given()
                 .spec(successfulRequests)
                 .when()
                 .header("Authorization", "Bearer "+token)
@@ -57,8 +59,8 @@ public class OrderSteps {
                 .then()
                 .spec(createdResponse)
                 .extract()
-                .as(AddBookRequest.class);
-        assertNotNull(addOneBook.getBooks()[0].getIsbn());
-        return addOneBook.getBooks()[0].getIsbn();
+                .as(AddBookResponse.class);
+        assertEquals(randomBook, addRandomBook.getBooks()[0].getIsbn());
+        return randomBook;
     }
 }

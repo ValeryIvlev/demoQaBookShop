@@ -1,19 +1,17 @@
 package test.test.models.token;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class GenerateTokenResponse {
-    String token;
-    String expires;
-    String status;
-    String result;
-    public GenerateTokenResponse() {}
-
-    public GenerateTokenResponse(String token, String expires, String status, String result) {
-        this.token = token;
-        this.expires = expires;
-        this.status = status;
-        this.result = result;
+    private String token;
+    private String expires;
+    private String status;
+    private String result;
+    public GenerateTokenResponse() {
     }
 }

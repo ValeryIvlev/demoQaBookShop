@@ -1,23 +1,22 @@
 package test.test.steps;
 
 import io.qameta.allure.Step;
-import io.restassured.http.ContentType;
 import test.test.data.TestData;
-import test.test.models.Books;
+import test.test.models.Book;
 import test.test.models.addbooks.AddBookRequest;
 import test.test.models.addbooks.AddBookResponse;
-import test.test.models.addbooks.CollectionOfIsbns;
 import test.test.models.books.GetBooksRequest;
 
 import java.util.ArrayList;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static test.test.specs.BaseSpecs.*;
 
 public class OrderSteps {
     @Step("Получаем весь список книг")
-    public static Books[] getAllBooks(){
+    public static Book[] getAllBooks(){
         GetBooksRequest getBooksRequest = given()
                 .spec(successfulRequests)
                 .when()
@@ -30,7 +29,7 @@ public class OrderSteps {
     }
     @Step("Получаем isbn всех книг")
     public static ArrayList<String> getAllIsbn(){
-        Books[] books = getAllBooks();
+        Book[] books = getAllBooks();
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < books.length; i++) {
             list.add(books[i].getIsbn());
@@ -41,14 +40,14 @@ public class OrderSteps {
     @Step("Добавляем книгу в корзину")
     public String addRandomBook(String token, String userId){
         TestData testData = new TestData();
-        CollectionOfIsbns collectionOfIsbns = CollectionOfIsbns.builder()
-                .isbn(testData.getRandomBook())
-                .build();
-        AddBookResponse addBookResponse = AddBookResponse.builder()
+        String randomBook = testData.getRandomBook();
+        Book isbns = Book.builder()
+                .isbn(randomBook).build();
+        AddBookRequest addBookResponse = AddBookRequest.builder()
                 .userId(userId)
-                .collectionOfIsbns(new CollectionOfIsbns[]{collectionOfIsbns})
+                .collectionOfIsbns(new Book[]{isbns})
                 .build();
-        AddBookRequest addOneBook = given()
+        AddBookResponse addRandomBook = given()
                 .spec(successfulRequests)
                 .when()
                 .header("Authorization", "Bearer "+token)
@@ -57,8 +56,8 @@ public class OrderSteps {
                 .then()
                 .spec(createdResponse)
                 .extract()
-                .as(AddBookRequest.class);
-        assertNotNull(addOneBook.getBooks()[0].getIsbn());
-        return addOneBook.getBooks()[0].getIsbn();
+                .as(AddBookResponse.class);
+        assertEquals(randomBook, addRandomBook.getBooks()[0].getIsbn());
+        return randomBook;
     }
 }

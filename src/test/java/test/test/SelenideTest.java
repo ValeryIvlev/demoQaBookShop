@@ -6,7 +6,6 @@ import test.test.helpers.WithLogin;
 import test.test.pages.ProfilePage;
 import test.test.steps.OrderSteps;
 
-import static com.codeborne.selenide.Selenide.open;
 import static test.test.data.UserData.*;
 import static test.test.helpers.LoginExtension.TOKEN;
 

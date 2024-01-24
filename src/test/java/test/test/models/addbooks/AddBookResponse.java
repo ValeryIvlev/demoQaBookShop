@@ -1,11 +1,17 @@
 package test.test.models.addbooks;
 
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+import test.test.models.Book;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
 public class AddBookResponse {
-    String userId;
-    CollectionOfIsbns[] collectionOfIsbns;
+    @JsonProperty("books")
+    private Book[] books;
+
+    public AddBookResponse() {
+    }
 }

@@ -18,7 +18,7 @@ public class SelenideTest extends TestBase{
         OrderSteps orderSteps = new OrderSteps();
         ProfilePage profilePage = new ProfilePage();
 
-        orderSteps.addBook(TOKEN, USER_ID);
+        orderSteps.addRandomBook(TOKEN, USER_ID);
 
         profilePage.openProfile()
                 .deleteNumberBook(0)

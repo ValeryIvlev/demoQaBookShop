@@ -1,10 +1,16 @@
 package test.test.models.books;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import test.test.models.Books;
-@Data
-public class GetBooksRequest {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import test.test.models.Book;
+@Getter
+@Setter
+@AllArgsConstructor
 
-    Books[] books;
+public class GetBooksRequest {
+    private Book[] books;
+
+    public GetBooksRequest() {
+    }
 }

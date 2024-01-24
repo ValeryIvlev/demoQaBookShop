@@ -1,10 +1,13 @@
 package test.test.models.addbooks;
 
-import lombok.Builder;
-import lombok.Data;
-@Data
+import lombok.*;
+import test.test.models.Book;
+
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
 public class AddBookRequest {
-    String userId;
-    CollectionOfIsbns[] collectionOfIsbns;
+    private String userId;
+    private Book[] collectionOfIsbns;
 }

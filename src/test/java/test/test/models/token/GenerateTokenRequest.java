@@ -1,18 +1,12 @@
 package test.test.models.token;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
 public class GenerateTokenRequest {
-    public String userName;
-    public String password;
-
-    public GenerateTokenRequest() {}
-
-    public GenerateTokenRequest(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
+    private String userName;
+    private String password;
 }

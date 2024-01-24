@@ -2,6 +2,8 @@ package test.test.data;
 
 import org.aeonbits.owner.ConfigFactory;
 import test.test.config.UserConfig;
+import test.test.models.token.GenerateTokenResponse;
+import test.test.steps.AuthorizationSteps;
 
 public class UserData {
     private static final UserConfig config = ConfigFactory.create(UserConfig.class, System.getProperties());

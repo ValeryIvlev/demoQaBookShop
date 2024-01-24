@@ -1,12 +1,10 @@
 package test.test.steps;
 
 import io.qameta.allure.Step;
-import io.restassured.http.ContentType;
 import test.test.data.TestData;
-import test.test.models.Books;
+import test.test.models.Book;
 import test.test.models.addbooks.AddBookRequest;
 import test.test.models.addbooks.AddBookResponse;
-import test.test.models.addbooks.CollectionOfIsbns;
 import test.test.models.books.GetBooksRequest;
 
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ import static test.test.specs.BaseSpecs.*;
 
 public class OrderSteps {
     @Step("Получаем весь список книг")
-    public static Books[] getAllBooks(){
+    public static Book[] getAllBooks(){
         GetBooksRequest getBooksRequest = given()
                 .spec(successfulRequests)
                 .when()
@@ -31,7 +29,7 @@ public class OrderSteps {
     }
     @Step("Получаем isbn всех книг")
     public static ArrayList<String> getAllIsbn(){
-        Books[] books = getAllBooks();
+        Book[] books = getAllBooks();
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < books.length; i++) {
             list.add(books[i].getIsbn());
@@ -43,12 +41,11 @@ public class OrderSteps {
     public String addRandomBook(String token, String userId){
         TestData testData = new TestData();
         String randomBook = testData.getRandomBook();
-        CollectionOfIsbns isbns = CollectionOfIsbns.builder()
-                .isbn(randomBook)
-                .build();
+        Book isbns = Book.builder()
+                .isbn(randomBook).build();
         AddBookRequest addBookResponse = AddBookRequest.builder()
                 .userId(userId)
-                .collectionOfIsbns(new CollectionOfIsbns[]{isbns})
+                .collectionOfIsbns(new Book[]{isbns})
                 .build();
         AddBookResponse addRandomBook = given()
                 .spec(successfulRequests)

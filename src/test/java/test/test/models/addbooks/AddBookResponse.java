@@ -1,20 +1,17 @@
 package test.test.models.addbooks;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
-import test.test.models.Books;
+import lombok.*;
+import test.test.models.Book;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
 public class AddBookResponse {
     @JsonProperty("books")
-    Books[] books;
+    private Book[] books;
 
     public AddBookResponse() {
-    }
-
-    public AddBookResponse(Books[] books) {
-        this.books = books;
     }
 }

@@ -1,18 +1,16 @@
 package test.test.models.user;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import test.test.models.Book;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Builder
 public class ApiUserRequest {
-    public String userName;
-    public String password;
-
-    public ApiUserRequest() {}
-
-    public ApiUserRequest(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
+    @JsonProperty("userID")
+    String userId;
+    String username;
+    Book[] books;
 }

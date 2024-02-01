@@ -1,14 +1,9 @@
 package test.test.steps;
 
 import io.qameta.allure.Step;
-import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.Cookie;
-import test.test.config.UserConfig;
-import test.test.data.UserData;
 import test.test.models.token.GenerateTokenRequest;
 import test.test.models.token.GenerateTokenResponse;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
 import static test.test.data.UserData.*;
 import static test.test.specs.BaseSpecs.*;

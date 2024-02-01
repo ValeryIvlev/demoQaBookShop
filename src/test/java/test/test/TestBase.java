@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import test.test.config.BrowserDriverConfig;
 import test.test.helpers.Attach;
+import test.test.models.token.GenerateTokenResponse;
+import test.test.steps.AuthorizationSteps;
 
 import java.util.Map;
 

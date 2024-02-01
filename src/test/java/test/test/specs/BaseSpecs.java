@@ -8,6 +8,7 @@ import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.ALL;
+
 import static test.test.helpers.CustomAllureListener.withCustomTemplates;
 
 
@@ -26,6 +27,10 @@ public class BaseSpecs {
 
     public static ResponseSpecification createdResponse = new ResponseSpecBuilder()
             .expectStatusCode(201)
+            .log(ALL)
+            .build();
+    public static ResponseSpecification successfulResponse204 = new ResponseSpecBuilder()
+            .expectStatusCode(204)
             .log(ALL)
             .build();
 

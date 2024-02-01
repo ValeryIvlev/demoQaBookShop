@@ -5,26 +5,28 @@ import test.test.data.TestData;
 import test.test.models.Book;
 import test.test.models.addbooks.AddBookRequest;
 import test.test.models.addbooks.AddBookResponse;
-import test.test.models.books.GetBooksRequest;
+
+import test.test.models.books.GetBooksResponse;
 
 import java.util.ArrayList;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static test.test.data.CookiesData.TOKEN;
+import static test.test.data.UserData.USER_ID;
 import static test.test.specs.BaseSpecs.*;
 
 public class OrderSteps {
     @Step("Получаем весь список книг")
     public static Book[] getAllBooks(){
-        GetBooksRequest getBooksRequest = given()
+        GetBooksResponse getBooksRequest = given()
                 .spec(successfulRequests)
                 .when()
                 .get("/BookStore/v1/Books")
                 .then()
                 .spec(successfulResponse)
                 .extract()
-                .as(GetBooksRequest.class);
+                .as(GetBooksResponse.class);
         return getBooksRequest.getBooks();
     }
     @Step("Получаем isbn всех книг")
@@ -38,7 +40,7 @@ public class OrderSteps {
     }
 
     @Step("Добавляем книгу в корзину")
-    public String addRandomBook(String token, String userId){
+    public String addRandomBook(String userId){
         TestData testData = new TestData();
         String randomBook = testData.getRandomBook();
         Book isbns = Book.builder()
@@ -50,7 +52,7 @@ public class OrderSteps {
         AddBookResponse addRandomBook = given()
                 .spec(successfulRequests)
                 .when()
-                .header("Authorization", "Bearer "+token)
+                .header("Authorization", "Bearer "+TOKEN)
                 .body(addBookResponse)
                 .post("/BookStore/v1/Books")
                 .then()
@@ -59,5 +61,16 @@ public class OrderSteps {
                 .as(AddBookResponse.class);
         assertEquals(randomBook, addRandomBook.getBooks()[0].getIsbn());
         return randomBook;
+    }
+    @Step("Удаляем все книги")
+    public OrderSteps deleteAllBooks(){
+        given()
+                .spec(successfulRequests)
+                .when()
+                .header("Authorization", "Bearer "+TOKEN)
+                .delete("/BookStore/v1/Books?UserId="+USER_ID)
+                .then()
+                .spec(successfulResponse204);
+        return this;
     }
 }

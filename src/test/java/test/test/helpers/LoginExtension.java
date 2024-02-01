@@ -9,13 +9,11 @@ import test.test.steps.AuthorizationSteps;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static test.test.data.UserData.USER_ID;
-import static test.test.data.UserData.USER_NAME;
+import static test.test.data.CookiesData.EXPIRES;
+import static test.test.data.CookiesData.TOKEN;
+import static test.test.data.UserData.*;
 
 public class LoginExtension implements BeforeEachCallback {
-    private static final GenerateTokenResponse cookies = AuthorizationSteps.generateAuth();
-    public static final String TOKEN = cookies.getToken();
-    public static final String EXPIRES = cookies.getExpires();
     @Override
     @Step("Устанавливаем авторизационные куки")
     public void beforeEach(ExtensionContext context) {
@@ -26,5 +24,4 @@ public class LoginExtension implements BeforeEachCallback {
         getWebDriver().manage().addCookie(new Cookie("token", TOKEN));
         getWebDriver().manage().addCookie(new Cookie("expires", EXPIRES));
     }
-
 }

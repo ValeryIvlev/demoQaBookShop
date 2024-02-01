@@ -7,17 +7,17 @@ import test.test.pages.ProfilePage;
 import test.test.steps.OrderSteps;
 
 import static test.test.data.UserData.*;
-import static test.test.helpers.LoginExtension.TOKEN;
 
 public class SelenideTest extends TestBase{
+    OrderSteps orderSteps = new OrderSteps();
+    ProfilePage profilePage = new ProfilePage();
     @WithLogin
     @Test
     @Tag("DemoQa")
     void deleteBook(){
-        OrderSteps orderSteps = new OrderSteps();
-        ProfilePage profilePage = new ProfilePage();
 
-        orderSteps.addRandomBook(TOKEN, USER_ID);
+        orderSteps.deleteAllBooks()
+                .addRandomBook(USER_ID);
 
         profilePage.openProfile()
                 .deleteNumberBook(0)

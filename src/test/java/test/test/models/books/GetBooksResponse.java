@@ -7,10 +7,9 @@ import test.test.models.Book;
 @Getter
 @Setter
 @AllArgsConstructor
-
-public class GetBooksRequest {
+public class GetBooksResponse {
     private Book[] books;
 
-    public GetBooksRequest() {
+    public GetBooksResponse() {
     }
 }

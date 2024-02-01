@@ -8,20 +8,21 @@ import test.test.models.user.ApiUserResponse;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static test.test.data.CookiesData.TOKEN;
 import static test.test.specs.BaseSpecs.createdResponse;
 import static test.test.specs.BaseSpecs.successfulRequests;
 
 public class RegistrationSteps {
 
     @Step("Создаем нового пользователя случайного")
-    public ApiUserRequest createUserRandom(){
+    public ApiUserResponse createUserRandom(){
         TestData testData = new TestData();
-        ApiUserRequest userRequest = ApiUserRequest
+        ApiUserResponse userRequest = test.test.models.user.ApiUserResponse
                 .builder()
                 .userName(testData.getUserName())
                 .password(testData.getPassword())
                 .build();
-        ApiUserResponse userResponse = given()
+        ApiUserRequest userResponse = given()
                 .spec(successfulRequests)
                 .when()
                 .body(userRequest)
@@ -29,7 +30,7 @@ public class RegistrationSteps {
                 .then()
                 .spec(createdResponse)
                 .extract()
-                .as(ApiUserResponse.class);
+                .as(ApiUserRequest.class);
 
         assertNotNull(userResponse.getUserId());
         assertEquals(userRequest.getUserName(), userResponse.getUsername());

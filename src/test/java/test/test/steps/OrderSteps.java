@@ -40,13 +40,13 @@ public class OrderSteps {
     }
 
     @Step("Добавляем книгу в корзину")
-    public String addRandomBook(String userId){
+    public String addRandomBook(){
         TestData testData = new TestData();
         String randomBook = testData.getRandomBook();
         Book isbns = Book.builder()
                 .isbn(randomBook).build();
         AddBookRequest addBookResponse = AddBookRequest.builder()
-                .userId(userId)
+                .userId(USER_ID)
                 .collectionOfIsbns(new Book[]{isbns})
                 .build();
         AddBookResponse addRandomBook = given()

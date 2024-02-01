@@ -17,7 +17,7 @@ public class SelenideTest extends TestBase{
     void deleteBook(){
 
         orderSteps.deleteAllBooks()
-                .addRandomBook(USER_ID);
+                .addRandomBook();
 
         profilePage.openProfile()
                 .deleteNumberBook(0)

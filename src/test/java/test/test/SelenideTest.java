@@ -6,7 +6,6 @@ import test.test.helpers.WithLogin;
 import test.test.pages.ProfilePage;
 import test.test.steps.OrderSteps;
 
-import static test.test.data.UserData.*;
 
 public class SelenideTest extends TestBase{
     OrderSteps orderSteps = new OrderSteps();

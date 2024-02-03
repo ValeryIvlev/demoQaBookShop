@@ -13,4 +13,5 @@ public class ApiUserRequest {
     String userId;
     String username;
     Book[] books;
+    public ApiUserRequest(){}
 }

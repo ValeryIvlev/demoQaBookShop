@@ -7,12 +7,14 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import test.test.pages.component.DeleteComponent;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProfilePage {
-    ElementsCollection deleteButton = $$("#delete-record-undefined");
-    ElementsCollection booksOnBasket = $$("[id*=see-book]");
+    private final ElementsCollection deleteButton = $$("#delete-record-undefined");
+    private final ElementsCollection booksOnBasket = $$("[id*=see-book]");
+    private final SelenideElement userNameWindow = $("#userName-value");
 
     @Step("Открываем профиль")
     public ProfilePage openProfile(){
@@ -30,6 +32,10 @@ public class ProfilePage {
     @Step("Проверяем что удалили книгу из корзины")
     public ProfilePage countBooksOnBasket(int countBooksBasket) {
         assertEquals(countBooksBasket, booksOnBasket.size());
+        return this;
+    }
+    public ProfilePage checkUserNameInProfile(String userName){
+        userNameWindow.shouldHave(text(userName));
         return this;
     }
 }

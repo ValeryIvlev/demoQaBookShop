@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteComponent {
 
-    SelenideElement buttonOk = $("#closeSmallModal-ok");
+    private final SelenideElement buttonOk = $("#closeSmallModal-ok");
     @Step("Подтверждаем удаление книги")
     public ProfilePage confirmDelete(){
         buttonOk.click();

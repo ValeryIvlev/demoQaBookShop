@@ -34,6 +34,7 @@ public class ProfilePage {
         assertEquals(countBooksBasket, booksOnBasket.size());
         return this;
     }
+    @Step("Проверяем юзер нейм в профиле")
     public ProfilePage checkUserNameInProfile(String userName){
         userNameWindow.shouldHave(text(userName));
         return this;

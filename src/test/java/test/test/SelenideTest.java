@@ -62,13 +62,11 @@ public class SelenideTest extends TestBase{
     @Tag("DemoQa")
     @DisplayName("Проверка регистрации нового пользователя UI без ввода капчи")
     void registrationNewUserUINotEnterCaptcha(){
-        String userName = testData.getUserName();
-
         loginPage.openLoginPage()
                 .clickOnRegistrationButton()
                 .enterFirstName(testData.getFirstName())
                 .enterLastName(testData.getLastName())
-                .enterUserName(userName)
+                .enterUserName(testData.getUserName())
                 .enterPassword(testData.getPassword())
                 .clickOnRegisterButton()
                 .checkTextException();

@@ -11,6 +11,7 @@ public class LoginPage {
     private final SelenideElement userNameInput =  $("#userName");
     private final SelenideElement passwordInput =  $("#password");
     private final SelenideElement loginButton =  $("#login");
+    private final SelenideElement registrationButton =  $("#newUser");
 
     @Step("Открытие страницы авторизации")
     public LoginPage openLoginPage(){
@@ -32,5 +33,10 @@ public class LoginPage {
     public ProfilePage clickOnLoginButton(){
         loginButton.click();
         return Selenide.page(ProfilePage.class);
+    }
+    @Step("Кликаем по кнопке регистрации нового юзера")
+    public RegistrationPage clickOnRegistrationButton(){
+        registrationButton.click();
+        return Selenide.page(RegistrationPage.class);
     }
 }

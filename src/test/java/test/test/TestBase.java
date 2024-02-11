@@ -26,7 +26,8 @@ public class TestBase {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = System.getProperty("size", "1920x1080");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 20000;
+        Configuration.timeout = 40000;
+        Configuration.pageLoadTimeout = 40000;
         Configuration.browserVersion = config.getBrowserVersion();
         Configuration.headless = false;
         Configuration.webdriverLogsEnabled = true;

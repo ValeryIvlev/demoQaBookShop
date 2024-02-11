@@ -15,6 +15,14 @@ public class TestData {
     public String getUserName() {
         return faker.name().username();
     }
+
+    public String getFirstName(){
+        return faker.name().firstName();
+    }
+
+    public String getLastName(){
+        return faker.name().lastName();
+    }
     public String getRandomBook(){
         List<String> list = OrderSteps.getAllIsbn();
         return list.get(faker.random().nextInt(list.size()));

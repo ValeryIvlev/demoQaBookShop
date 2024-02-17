@@ -19,8 +19,8 @@ import static test.test.data.UserData.USER_NAME;
 import static test.test.specs.BaseSpecs.*;
 
 public class OrderSteps {
-    @Step("Получаем список книг из корзины пользователя")
-    private Book[] getBooks(){
+    @Step("Получаем список книг из корзины пользователя со всеми параметрами книги")
+    private Book[] getBooksBasketUser(){
         GetUserBooksResponse getUserBooksResponse = given()
                 .spec(successfulRequests)
                 .when()
@@ -97,12 +97,22 @@ public class OrderSteps {
         return this;
     }
     @Step("Добавляем книги в корзину")
-    public void addingBookToCart(int countAddBook){
+    public OrderSteps addingBookToCart(int countAddBook){
         ArrayList<String> list =  getAllIsbn();
         for (int i = 0; i < countAddBook; i++) {
             addBook(list.get(i));
         }
+        return this;
     }
-
+    @Step("Получаем названия книг из корзины пользователя")
+    public ArrayList<String> nameBooksInUserBasket(){
+        ArrayList<String> list = new ArrayList<>();
+        Book[] books = getBooksBasketUser();
+        for (int i = 0; i < books.length; i++) {
+            list.add(books[i].getTitle());
+        }
+        System.out.println(list);
+        return list;
+    }
 
 }

@@ -58,9 +58,9 @@ public class OrderSteps {
         return list;
     }
     @Step("Добавляем рандомную книгу в корзину")
-    public void addBook(String book){
+    public void addBook(String isbn){
         Book isbns = Book.builder()
-                .isbn(book).build();
+                .isbn(isbn).build();
         AddBookRequest addBookResponse = AddBookRequest.builder()
                 .userId(USER_ID)
                 .collectionOfIsbns(new Book[]{isbns})
@@ -75,7 +75,7 @@ public class OrderSteps {
                 .spec(createdResponse)
                 .extract()
                 .as(AddBookResponse.class);
-        assertEquals(book, addRandomBook.getBooks()[0].getIsbn());
+        assertEquals(isbn, addRandomBook.getBooks()[0].getIsbn());
     }
 
     @Step("Добавляем рандомную книгу в корзину")
@@ -97,7 +97,7 @@ public class OrderSteps {
         return this;
     }
     @Step("Добавляем книги в корзину")
-    public OrderSteps addingBookToCart(int countAddBook){
+    public OrderSteps addBookToCartCount(int countAddBook){
         ArrayList<String> list =  getAllIsbn();
         for (int i = 0; i < countAddBook; i++) {
             addBook(list.get(i));

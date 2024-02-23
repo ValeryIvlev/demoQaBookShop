@@ -71,7 +71,7 @@ public class SelenideTest extends TestBase{
     @ParameterizedTest(name = "Проверка отображения {0} книг в корзине")
     void checkingBooksInCart(int countBooks){
         orderSteps.deleteAllBooks()
-                .addingBookToCart(countBooks);
+                .addBookToCartCount(countBooks);
         ArrayList<String> booksList = orderSteps.nameBooksInUserBasket();
         profilePage.openProfile()
                 .checkBooksInBasket(booksList);

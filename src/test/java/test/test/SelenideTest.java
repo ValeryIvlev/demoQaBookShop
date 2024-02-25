@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import test.test.data.TestData;
 import test.test.helpers.WithLogin;
 import test.test.models.user.ApiUserResponse;
+import test.test.pages.BookStorePage;
 import test.test.pages.LoginPage;
 import test.test.pages.ProfilePage;
 import test.test.steps.OrderSteps;
@@ -22,6 +23,7 @@ public class SelenideTest extends TestBase{
     RegistrationSteps registrationSteps = new RegistrationSteps();
     LoginPage loginPage = new LoginPage();
     TestData testData = new TestData();
+    BookStorePage bookStorePage = new BookStorePage();
 
     @WithLogin
     @Test
@@ -69,11 +71,18 @@ public class SelenideTest extends TestBase{
     })
 
     @ParameterizedTest(name = "Проверка отображения {0} книг в корзине")
-    void checkingBooksInCart(int countBooks){
+    void checkBooksInCart(int countBooks){
         orderSteps.deleteAllBooks()
                 .addBookToCartCount(countBooks);
         ArrayList<String> booksList = orderSteps.nameBooksInUserBasket();
         profilePage.openProfile()
                 .checkBooksInBasket(booksList);
+    }
+    @Test
+    @Tag("DemoQa")
+    @DisplayName("Проверка отображения всех доступных книг в магазине")
+    void checkBooksInStore(){
+        bookStorePage.openStorePage()
+                .checkBooksInStore(OrderSteps.getAllParamValues("title"));
     }
 }

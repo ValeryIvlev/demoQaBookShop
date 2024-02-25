@@ -3,15 +3,15 @@ package test.test;
 import org.junit.jupiter.api.Test;
 import test.test.steps.OrderSteps;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class ApiTest {
 
     @Test
     void test(){
-        OrderSteps orderSteps = new OrderSteps();
-        orderSteps.deleteAllBooks()
-        .addRandomBook();
-        orderSteps.nameBooksInUserBasket();
-
+        //System.out.println(OrderSteps.getAllParamValues("isbn"));
 
     }
 }

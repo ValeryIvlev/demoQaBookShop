@@ -24,7 +24,7 @@ public class TestData {
         return faker.name().lastName();
     }
     public String getRandomBook(){
-        List<String> list = OrderSteps.getAllIsbn();
+        List<String> list = OrderSteps.getAllParamValues("isbn");
         return list.get(faker.random().nextInt(list.size()));
     }
 }

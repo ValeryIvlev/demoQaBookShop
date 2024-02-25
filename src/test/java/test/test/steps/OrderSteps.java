@@ -36,7 +36,7 @@ public class OrderSteps {
     }
 
     @Step("Получаем весь список книг")
-    public static Book[] getAllBooks(){
+    private static Book[] getAllBooks(){
         GetBooksResponse getBooksRequest = given()
                 .spec(successfulRequests)
                 .when()
@@ -48,15 +48,25 @@ public class OrderSteps {
         return getBooksRequest.getBooks();
     }
 
-    @Step("Получаем isbn всех книг")
-    public static ArrayList<String> getAllIsbn(){
+    @Step("Получаем список значений определенного поля из всех книг")
+    public static ArrayList<String> getAllParamValues(String paramName){
         Book[] books = getAllBooks();
         ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < books.length; i++) {
-            list.add(books[i].getIsbn());
+        for (Book book : books) {
+            switch (paramName) {
+                case "isbn":
+                    list.add(book.getIsbn());
+                    break;
+                case "title":
+                    list.add(book.getTitle());
+                    break;
+                default:
+                    throw new IllegalArgumentException("Некорректное имя поля: " + paramName);
+            }
         }
         return list;
     }
+
     @Step("Добавляем рандомную книгу в корзину")
     public void addBook(String isbn){
         Book isbns = Book.builder()
@@ -98,7 +108,7 @@ public class OrderSteps {
     }
     @Step("Добавляем книги в корзину")
     public OrderSteps addBookToCartCount(int countAddBook){
-        ArrayList<String> list =  getAllIsbn();
+        ArrayList<String> list =  getAllParamValues("isbn");
         for (int i = 0; i < countAddBook; i++) {
             addBook(list.get(i));
         }

@@ -11,7 +11,8 @@ import test.test.models.Book;
 public class ApiUserRequest {
     @JsonProperty("userID")
     String userId;
-    String username;
+    @JsonProperty("username")
+    String userName;
     Book[] books;
     public ApiUserRequest(){}
 }

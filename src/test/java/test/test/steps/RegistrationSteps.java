@@ -1,6 +1,7 @@
 package test.test.steps;
 
 import io.qameta.allure.Step;
+import test.test.data.RegistrationData;
 import test.test.data.TestData;
 import test.test.models.user.ApiUserRequest;
 import test.test.models.user.ApiUserResponse;
@@ -15,7 +16,7 @@ import static test.test.specs.BaseSpecs.successfulRequests;
 public class RegistrationSteps {
 
     @Step("Создаем нового пользователя случайного")
-    public ApiUserResponse createUserRandom(){
+    public RegistrationData createUserRandom(){
         TestData testData = new TestData();
         ApiUserResponse userRequest = test.test.models.user.ApiUserResponse
                 .builder()
@@ -33,7 +34,7 @@ public class RegistrationSteps {
                 .as(ApiUserRequest.class);
 
         assertNotNull(userResponse.getUserId());
-        assertEquals(userRequest.getUserName(), userResponse.getUsername());
-        return userRequest;
+        assertEquals(userRequest.getUserName(), userResponse.getUserName());
+        return new RegistrationData(userResponse, userRequest);
     }
 }

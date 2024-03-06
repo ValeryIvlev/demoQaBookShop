@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,6 +20,7 @@ public class ProfilePage {
     private final ElementsCollection booksOnBasket = $$("[id*=see-book]");
     private final SelenideElement userNameWindow = $("#userName-value");
     private final SelenideElement basketSections = $(".rt-tbody");
+    private final SelenideElement deleteAccountButton = $(byText("Delete Account"));
 
     @Step("Открываем профиль")
     public ProfilePage openProfile(){
@@ -51,7 +53,13 @@ public class ProfilePage {
         for (int i = 0; i < count; i++) {
             booksOnBasket.get(i).shouldHave(text(namesBooks.get(i)));
         }
-
+        return this;
+    }
+    @Step("Удаляем аккаунт UI")
+    public ProfilePage deleteAccount(){
+        deleteAccountButton.click();
+        $("#closeSmallModal-ok").click();
+        switchTo().alert().accept();
         return this;
     }
 }

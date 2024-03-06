@@ -26,4 +26,21 @@ public class AuthorizationSteps {
                 .extract()
                 .as(GenerateTokenResponse.class);
     }
+    @Step("Получаем авторизационные данные у конкретного юзера")
+    public static GenerateTokenResponse generateAuthWithUserData(String userName, String password){
+        GenerateTokenRequest tokenRequest = GenerateTokenRequest
+                .builder()
+                .userName(userName)
+                .password(password)
+                .build();
+        return given()
+                .spec(successfulRequests)
+                .when()
+                .body(tokenRequest)
+                .post("/Account/v1/GenerateToken")
+                .then()
+                .spec(successfulResponse)
+                .extract()
+                .as(GenerateTokenResponse.class);
+    }
 }

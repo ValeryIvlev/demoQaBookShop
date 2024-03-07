@@ -1,10 +1,8 @@
-package test.test.data;
+package test.test.models.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import test.test.models.user.ApiUserRequest;
-import test.test.models.user.ApiUserResponse;
 
 @Getter
 @Setter

@@ -1,7 +1,7 @@
 package test.test.steps;
 
 import io.qameta.allure.Step;
-import test.test.data.RegistrationData;
+import test.test.models.user.RegistrationData;
 import test.test.data.TestData;
 import test.test.models.user.ApiUserRequest;
 import test.test.models.user.ApiUserResponse;
@@ -9,7 +9,6 @@ import test.test.models.user.ApiUserResponse;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static test.test.data.CookiesData.TOKEN;
 import static test.test.specs.BaseSpecs.createdResponse;
 import static test.test.specs.BaseSpecs.successfulRequests;
 

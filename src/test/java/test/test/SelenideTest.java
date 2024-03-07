@@ -5,22 +5,19 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import test.test.data.RegistrationData;
+import test.test.models.user.RegistrationData;
 import test.test.data.TestData;
 import test.test.helpers.ManualLoginExtension;
 import test.test.helpers.WithLogin;
-import test.test.models.user.ApiUserRequest;
 import test.test.models.user.ApiUserResponse;
 import test.test.pages.BookStorePage;
 import test.test.pages.LoginPage;
 import test.test.pages.ProfilePage;
-import test.test.pages.RegistrationPage;
 import test.test.steps.OrderSteps;
 import test.test.steps.RegistrationSteps;
 
 import java.util.ArrayList;
 
-import static com.codeborne.selenide.Selenide.sleep;
 
 
 public class SelenideTest extends TestBase{

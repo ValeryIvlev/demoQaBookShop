@@ -20,7 +20,7 @@ import static test.test.specs.BaseSpecs.*;
 
 public class OrderSteps {
     @Step("Получаем список книг из корзины пользователя со всеми параметрами книги")
-    private Book[] getBooksBasketUser(){
+    private ArrayList<Book> getBooksBasketUser(){
         GetUserBooksResponse getUserBooksResponse = given()
                 .spec(successfulRequests)
                 .when()
@@ -36,7 +36,7 @@ public class OrderSteps {
     }
 
     @Step("Получаем весь список книг")
-    private static Book[] getAllBooks(){
+    private static ArrayList<Book> getAllBooks(){
         GetBooksResponse getBooksRequest = given()
                 .spec(successfulRequests)
                 .when()
@@ -50,7 +50,7 @@ public class OrderSteps {
 
     @Step("Получаем список значений определенного поля из всех книг")
     public static ArrayList<String> getAllParamValues(String paramName){
-        Book[] books = getAllBooks();
+        ArrayList<Book> books = getAllBooks();
         ArrayList<String> list = new ArrayList<>();
         for (Book book : books) {
             switch (paramName) {
@@ -117,9 +117,9 @@ public class OrderSteps {
     @Step("Получаем названия книг из корзины пользователя")
     public ArrayList<String> nameBooksInUserBasket(){
         ArrayList<String> list = new ArrayList<>();
-        Book[] books = getBooksBasketUser();
-        for (int i = 0; i < books.length; i++) {
-            list.add(books[i].getTitle());
+        ArrayList<Book> books = getBooksBasketUser();
+        for (int i = 0; i < books.size(); i++) {
+            list.add(books.get(i).getTitle());
         }
         System.out.println(list);
         return list;

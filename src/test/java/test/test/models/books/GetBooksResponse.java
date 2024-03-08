@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import test.test.models.Book;
+
+import java.util.ArrayList;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class GetBooksResponse {
-    private Book[] books;
+    private ArrayList<Book> books;
 
     public GetBooksResponse() {
     }

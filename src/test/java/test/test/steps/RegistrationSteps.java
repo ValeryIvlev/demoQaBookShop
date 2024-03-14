@@ -17,8 +17,7 @@ public class RegistrationSteps {
     @Step("Создаем нового пользователя случайного")
     public RegistrationData createUserRandom(){
         TestData testData = new TestData();
-        ApiUserResponse userRequest = test.test.models.user.ApiUserResponse
-                .builder()
+        ApiUserResponse userRequest = ApiUserResponse.builder()
                 .userName(testData.getUserName())
                 .password(testData.getPassword())
                 .build();

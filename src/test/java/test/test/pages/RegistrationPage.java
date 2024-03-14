@@ -34,6 +34,7 @@ public class RegistrationPage {
     }
     @Step("Кликаем по кнопке регистрации")
     public RegistrationPage clickOnRegisterButton(){
+        registerButton.scrollTo();
         registerButton.click();
         return this;
     }

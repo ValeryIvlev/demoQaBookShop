@@ -10,6 +10,7 @@ import test.test.models.books.GetBooksResponse;
 import test.test.models.books.GetUserBooksResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -8,11 +8,11 @@ import test.test.models.Book;
 @Setter
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class ApiUserRequest {
     @JsonProperty("userID")
     String userId;
     @JsonProperty("username")
     String userName;
     Book[] books;
-    public ApiUserRequest(){}
 }

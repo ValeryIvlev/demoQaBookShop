@@ -7,11 +7,9 @@ import test.test.models.Book;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class AddBookResponse {
     @JsonProperty("books")
     private Book[] books;
-
-    public AddBookResponse() {
-    }
 }

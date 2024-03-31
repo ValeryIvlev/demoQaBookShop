@@ -1,16 +1,13 @@
 package test.test.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Book {
     private String isbn;
@@ -22,7 +19,4 @@ public class Book {
     private Integer pages;
     private String description;
     private String website;
-
-    public Book() {
-    }
 }

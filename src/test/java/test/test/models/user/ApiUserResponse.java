@@ -7,6 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class ApiUserResponse{
-    public String userName;
-    public String password;
+    private String userName;
+    private String password;
 }

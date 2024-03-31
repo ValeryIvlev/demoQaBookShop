@@ -3,7 +3,6 @@ package test.test.models.addbooks;
 import lombok.*;
 import test.test.models.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,5 +11,5 @@ import java.util.List;
 @Builder
 public class AddBookRequest {
     private String userId;
-    private Book[] collectionOfIsbns;
+    private List<Book> collectionOfIsbns;
 }

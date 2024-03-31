@@ -10,6 +10,8 @@ import test.test.models.books.GetBooksResponse;
 import test.test.models.books.GetUserBooksResponse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -37,7 +39,7 @@ public class OrderSteps {
     }
 
     @Step("Получаем весь список книг")
-    private static ArrayList<Book> getAllBooks(){
+    private static List<Book> getAllBooks(){
         GetBooksResponse getBooksRequest = given()
                 .spec(successfulRequests)
                 .when()
@@ -51,7 +53,7 @@ public class OrderSteps {
 
     @Step("Получаем список значений определенного поля из всех книг")
     public static ArrayList<String> getAllParamValues(String paramName){
-        ArrayList<Book> books = getAllBooks();
+        List<Book> books = getAllBooks();
         ArrayList<String> list = new ArrayList<>();
         for (Book book : books) {
             switch (paramName) {
@@ -74,7 +76,7 @@ public class OrderSteps {
                 .isbn(isbn).build();
         AddBookRequest addBookResponse = AddBookRequest.builder()
                 .userId(USER_ID)
-                .collectionOfIsbns(new Book[]{isbns})
+                .collectionOfIsbns(Collections.singletonList(isbns))
                 .build();
         AddBookResponse addRandomBook = given()
                 .spec(successfulRequests)
@@ -86,7 +88,7 @@ public class OrderSteps {
                 .spec(createdResponse)
                 .extract()
                 .as(AddBookResponse.class);
-        assertEquals(isbn, addRandomBook.getBooks()[0].getIsbn());
+        assertEquals(isbn, addRandomBook.getBooks().get(0).getIsbn());
     }
 
     @Step("Добавляем рандомную книгу в корзину")

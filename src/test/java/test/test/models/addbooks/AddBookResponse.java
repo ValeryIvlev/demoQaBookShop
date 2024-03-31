@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import test.test.models.Book;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,5 +14,5 @@ import test.test.models.Book;
 @Builder
 public class AddBookResponse {
     @JsonProperty("books")
-    private Book[] books;
+    private List<Book> books;
 }

@@ -7,11 +7,12 @@ import lombok.Setter;
 import test.test.models.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetBooksResponse {
-    private ArrayList<Book> books;
+    private List<Book> books;
 }

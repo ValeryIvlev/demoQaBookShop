@@ -50,10 +50,10 @@ public class SelenideTest extends TestBase{
         ApiUserResponse userData = registrationSteps.createUserRandom().getUserResponse();
 
         loginPage.openLoginPage()
-                .enterUserName(userData.userName)
-                .enterPassword(userData.password)
+                .enterUserName(userData.getUserName())
+                .enterPassword(userData.getPassword())
                 .clickOnLoginButton()
-                .checkUserNameInProfile(userData.userName);
+                .checkUserNameInProfile(userData.getUserName());
     }
 
     @Test

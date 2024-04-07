@@ -4,14 +4,13 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.Cookie;
-import test.test.models.token.GenerateTokenResponse;
-import test.test.steps.AuthorizationSteps;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static test.test.data.CookiesData.EXPIRES;
 import static test.test.data.CookiesData.TOKEN;
-import static test.test.data.UserData.*;
+import static test.test.data.UserData.USER_ID;
+import static test.test.data.UserData.USER_NAME;
 
 public class LoginExtension implements BeforeEachCallback {
     @Override

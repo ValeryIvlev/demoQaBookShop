@@ -7,10 +7,6 @@ import test.test.steps.AuthorizationSteps;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static test.test.data.CookiesData.EXPIRES;
-import static test.test.data.CookiesData.TOKEN;
-import static test.test.data.UserData.USER_ID;
-import static test.test.data.UserData.USER_NAME;
 
 public class ManualLoginExtension {
     @Step("Устанавливаем авторизационные куки")

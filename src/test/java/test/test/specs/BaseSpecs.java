@@ -8,7 +8,6 @@ import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.ALL;
-
 import static test.test.helpers.CustomAllureListener.withCustomTemplates;
 
 

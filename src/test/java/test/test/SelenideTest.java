@@ -105,6 +105,5 @@ public class SelenideTest extends TestBase{
                 .enterPassword(password)
                 .clickOnLoginButton();
         loginPage.checkAlertInfoInvalidAuthorization();
-
     }
 }
